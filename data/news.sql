@@ -1,6 +1,6 @@
-CREATE TABLE IF NOT EXISTS `news` (
-  `idnews` INT GENERATED ALWAYS AS (),
-  `time` DATETIME() NOT NULL,
+CREATE TABLE IF NOT EXISTS `news_sentiment`.`news` (
+  `idnews` INT AUTO_INCREMENT,
+  `time` DATETIME NOT NULL,
   `title` TEXT(1000) NOT NULL,
   `idpeople` INT NOT NULL,
   `polarity` DECIMAL(3,2) NULL,
@@ -13,6 +13,6 @@ CREATE TABLE IF NOT EXISTS `news` (
   INDEX `fk_news_people_idx` (`idpeople` ASC) VISIBLE,
   CONSTRAINT `fk_news_people`
     FOREIGN KEY (`idpeople`)
-    REFERENCES `mydb`.`people` (`idpeople`)
+    REFERENCES `news_sentiment`.`people` (`idpeople`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
