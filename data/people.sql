@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS `news_sentiment`.`people` (
   `idpeople` INT AUTO_INCREMENT,
-  `fname` VARCHAR(45) NOT NULL,
+  `fname` VARCHAR(45) NOT NULL UNIQUE,
   `countrycode` CHAR(3) NOT NULL,
   `party_name` VARCHAR(45) NULL,
   PRIMARY KEY (`idpeople`),

@@ -9,6 +9,7 @@ if "os" not in dir():
 if "datetime" not in dir():
     import datetime
 from unidecode import unidecode
+from tqdm import tqdm
 
 ##### GETTING PASSWORDS
 
@@ -57,7 +58,7 @@ def guardian_get_tag(name):
         print(f"Unable to retrieve the tag id for {name}: Error {response.status_code}: {response.text}")  
         return None
 
-def get_guardian_articles(query, datefrom=None, dateto=None):
+def get_guardian_articles(query, id=None, datefrom=None, dateto=None):
     articles = []
     tag = guardian_get_tag(query)
     if not dateto:
@@ -107,12 +108,15 @@ def get_guardian_articles(query, datefrom=None, dateto=None):
         results = response['response']['results']
         for e in results:
             art = {
-                'date': e['webPublicationDate'],
+                'time': e['webPublicationDate'],
                 'title': e['webTitle'],
-                'person': query
             }
+            if id:
+                art['idpeople'] = id
+            else:
+                art['person']= query
             articles.append(art)
-        for i in range(2, pages+1):
+        for i in tqdm(range(2, pages+1)):
             parameters['page'] = i
             url2 = url + urllib.parse.urlencode(parameters)
             try:
@@ -122,10 +126,13 @@ def get_guardian_articles(query, datefrom=None, dateto=None):
                     results = response['response']['results']
                     for e in results:
                         art = {
-                            'date': e['webPublicationDate'],
+                            'time': e['webPublicationDate'],
                             'title': e['webTitle'],
-                            'person': query
                         }
+                        if id:
+                            art['idpeople'] = id
+                        else:
+                            art['person']= query
                         articles.append(art)
                 else: 
                     print(f"Unable to retrieve articles from page {i} of {query}: Error {response.status_code}: {response.text}")

@@ -1,11 +1,6 @@
-from flask import Flask, request, jsonify
-import random
-import numpy as np
+from flask import Flask, request, jsonify, make_response
 import markdown.extensions.fenced_code
-import tools.sql_queries as esecuele
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
-sia = SentimentIntensityAnalyzer()
-
+import tools.sql_queries as mysql
 
 app = Flask(__name__)
 
@@ -16,36 +11,48 @@ def readme ():
     return markdown.markdown(readme_file.read(), extensions = ["fenced_code"])
 
 # GET ENDPOINTS: SQL 
-# SQL get everything
-@app.route("/sql/")
-def sql ():
-    return jsonify(esecuele.get_everything())
+# Get All News Titles
+@app.route("/news/<name>")
+def get_news (name):
+    if name:
+        return jsonify(mysql.get_everything(name))
+    else:
+        return jsonify(mysql.get_everything(name))
+# Get a string with all news titles
+@app.route("/text/<name>", )
+def get_alltext (name):
+    if name:
+        return jsonify(mysql.get_text(name))
+    else:
+        return jsonify(mysql.get_text(name))
+### GET countries INFO
+@app.route("/country/<name>", )
+def get_countries(name):
+    if name:
+        return jsonify(mysql.get_country(name))
+    else:
+        return jsonify(mysql.get_country(name))
+### GET SENTIMENT AVG and STD GROUPPED
 
-@app.route("/sql/<name>", )
-def lines_from_characters (name):
-    return jsonify(esecuele.get_everything_from_character(name))
+@app.route("/sentiment/<name>", )
+def sentiment_get (name):
+    if name:
+        return jsonify(mysql.get_sentiment (name))
+    else:
+        return jsonify(mysql.get_sentiment (name))
 
+####### PUT and GET People
 
-@app.route("/sa/<name>/", )
-def sa_from_character (name):
-    everything = esecuele.get_just_dialogue(name)
-    #return jsonify(everything)
-    return jsonify([sia.polarity_scores(i["dialogue"])["compound"] for i in everything])
-
-
-####### POST
-@app.route("/insertrow", methods=["POST"])
-def try_post ():
-    # Decoding params
-    my_params = request.args
-    scene = my_params["scene"]
-    character_name = my_params["character_name"]
-    dialogue = my_params["dialogue"]
-
-    # Passing to my function: do the inserr
-    esecuele.insert_one_row(scene, character_name, dialogue)
-    return f"Query succesfully inserted"
-
+@app.route("/people/", methods=["PUT, GET"])
+def people_put_get ():
+    # Check method
+    if request.method == 'POST':
+        put_request = request.args.to_dict()
+        #passing to the function to add people
+        add_people = mysql.add_people(put_request)
+        return make_response(add_people)
+    if request.method == 'GET':
+        return jsonify(mysql.get_people())
 
 if __name__ == "__main__":
     app.run(port=9000, debug=True)
