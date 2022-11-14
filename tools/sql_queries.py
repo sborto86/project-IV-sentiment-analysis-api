@@ -103,7 +103,7 @@ def add_people (dic):
         print(f"{dic['name']} correctly introduced in the database")
     except Exception as e:
         return f"There was a problem adding {dic['name']} in the database --> {type(e)} : {e}", 503
-    id = engine.execute("SELECT idpeople FROM people WHERE fname='Joe Biden';").first()[0]
+    id = engine.execute(f"SELECT idpeople FROM people WHERE fname='{dic['name']}';").first()[0]
     
     ## Feching the information from the Guardian API to add to the news table
     

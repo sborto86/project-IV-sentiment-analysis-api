@@ -14,3 +14,5 @@ Project IV: Sentiment analysis in news for relevant people
 | Tqdm | Show progress bar |
 | Unidecode | Transform strings to unicode |
 | Sqlalchemy | Connect with MySQL |
+| re | regex's queries|
+|stylecloud| Generates wordclouds |
