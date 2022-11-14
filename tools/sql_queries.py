@@ -3,15 +3,19 @@ import pandas as pd
 from src.queries import get_guardian_articles
 from src.sentiment import add_sentiment
 
-def get_everything ():
+def get_everything (name=None):
     query = """
             SELECT time AS date, title, people.fname AS `name`, country.countryname AS country, people.party_name AS party, polarity, subjectivity, news.neg, neu, pos, compound 
             FROM news
             JOIN people
             ON news.idpeople = people.idpeople
             JOIN country
-            ON people.countrycode = country.countrycode;
+            ON people.countrycode = country.countrycode
             """
+    if name:
+        query+=f"""WHERE people.fname = '{name}';"""
+    else:
+        query+= """;"""
     df = pd.read_sql_query(query, engine)
     return df.to_dict(orient="records")
 
@@ -28,6 +32,7 @@ def get_country(name=None):
     return df.to_dict(orient="records")
 
 def get_text(name=None):
+    engine.execute('SET SESSION group_concat_max_len=100000;')
     query = """
             SELECT people.fname AS `name`, GROUP_CONCAT(title SEPARATOR ' ') AS all_titles 
             FROM news

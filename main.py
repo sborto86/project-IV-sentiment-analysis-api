@@ -12,13 +12,15 @@ def readme ():
 
 # GET ENDPOINTS: SQL 
 # Get All News Titles
+@app.route('/news', defaults={'name': None})
 @app.route("/news/<name>")
 def get_news (name):
     if name:
-        return jsonify(mysql.get_everything(name))
+        return jsonify(mysql.get_everything(name=name))
     else:
-        return jsonify(mysql.get_everything(name))
+        return jsonify(mysql.get_everything())
 # Get a string with all news titles
+@app.route('/text', defaults={'name': None})
 @app.route("/text/<name>", )
 def get_alltext (name):
     if name:
@@ -26,6 +28,7 @@ def get_alltext (name):
     else:
         return jsonify(mysql.get_text(name))
 ### GET countries INFO
+@app.route('/country', defaults={'name': None})
 @app.route("/country/<name>", )
 def get_countries(name):
     if name:
@@ -33,7 +36,7 @@ def get_countries(name):
     else:
         return jsonify(mysql.get_country(name))
 ### GET SENTIMENT AVG and STD GROUPPED
-
+@app.route('/sentiment', defaults={'name': None})
 @app.route("/sentiment/<name>", )
 def sentiment_get (name):
     if name:
@@ -43,11 +46,12 @@ def sentiment_get (name):
 
 ####### PUT and GET People
 
-@app.route("/people/", methods=["PUT, GET"])
+@app.route("/people/", methods=["PUT", "GET"])
 def people_put_get ():
     # Check method
-    if request.method == 'POST':
+    if request.method == 'PUT':
         put_request = request.args.to_dict()
+        print(put_request)
         #passing to the function to add people
         add_people = mysql.add_people(put_request)
         return make_response(add_people)

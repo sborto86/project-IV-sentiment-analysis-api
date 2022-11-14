@@ -31,7 +31,7 @@ def token_leman(text, exclude=[]):
     text2 = " ".join(clean)
     return text2
 
-def word_cloud_gen(text, filename, icon="fa-user-secret", clean=True):
+def word_cloud_gen(text, filename, icon="fa-user-secret", clean=True, exclude=[]):
     '''
     Generates a word cloud of a given text and saves it to the img/ folder
     Atributes:
@@ -41,7 +41,7 @@ def word_cloud_gen(text, filename, icon="fa-user-secret", clean=True):
        clean: bool. Tokenize, Clean and Lemmize text
     '''
     if clean:
-        text = token_leman(text)
+        text = token_leman(text, exclude=exclude)
     icon=f"fas {icon}"
     file=f"./img/{filename}.png"
     stylecloud.gen_stylecloud(text,

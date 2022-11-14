@@ -33,15 +33,15 @@ def sentiment_timeplot (df, y, group="name", filter=None, filename=None, width=1
     df = df.sort_index()
     ## preparing the dataframe to plot
     if filter:
-        df = df[df[group] in filter]
+        df = df[df[group].isin(filter)]
         if len(filter) == 1 and y=="all":
             fig_ = df[["polarity", "subjectivity", "neg", "neu", "pos", "compound"]].rolling('30.5D', min_periods=10).mean().plot()
         elif len(filter) == 1 and y != "all":
             fig_ = df[[y]].rolling('30.5D', min_periods=10).mean().plot()
-    
-    df = df.groupby(group)[y].rolling('30.5D', min_periods=10).mean().reset_index()
-    ## Plotting
-    fig_ = sns.lineplot(data=df, x='date', y=y, hue=group)
+    if y != "all":
+        df = df.groupby(group)[y].rolling('30.5D', min_periods=10).mean().reset_index()
+        ## Plotting
+        fig_ = sns.lineplot(data=df, x='date', y=y, hue=group)
     if y == "neu":
         plt.ylim(0, 1)
     elif y !=all:
