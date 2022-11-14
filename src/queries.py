@@ -90,7 +90,7 @@ def get_guardian_articles(query, id=None, datefrom=None, dateto=None):
     if response.status_code == 200:
         response = response.json()
         pages = response['response']['pages']
-        if pages < 10 and not parameters['q']:
+        if pages < 10 and 'q' not in parameters:
             del parameters['tag']
             parameters['q'] = query
             url2 = url + urllib.parse.urlencode(parameters)
