@@ -2,11 +2,11 @@
 
 ## Basic Information:
 - Author: Sergi Portolés
-- Project IV: for the Data Analytics Bootcamp in Ironhack (Sentiment Analyisis API)
+- Project IV: for the Data Analytics Bootcamp in Ironhack (Sentiment Analysis API)
 
 ## Objectives of the Project:
 
-This project have two main objectives
+This project has two main objectives
 
 1) Create a complete RestfulAPI with Flask ready to be deployed.
 
@@ -29,13 +29,16 @@ This project have two main objectives
 | dotenv | Import tokens |
 | Os | Set paths |
 | Tqdm | Show progress bar |
-| Unidecode | Transform strings to unicode |
+| Unidecode | Transform strings to Unicode |
 | Sqlalchemy | Connect with MySQL |
 | Re | Regex's queries|
 | Stylecloud | Generates Wordclouds |
 | IPython | Visualize image |
 | Matplotlib | Data visualization |
 | Seaborn | Data visualization |
+| TextBlob | Sentiment Analysis |
+| NLTK | Natural Language Toolkit |
+| Spacy | Natural Language Processing |
 
 ## File Structure:
 
@@ -45,7 +48,7 @@ Python file that establishes the Flask local development server and the API endp
 
 ### *api-use-example.ipynb*
 
-Jupyter notebook with examples on how to use this API and generate figures.
+Jupyter notebook with examples of how to use this API and generate figures.
 
 ### ./src/
 
@@ -60,7 +63,7 @@ Jupyter notebook with examples on how to use this API and generate figures.
 
 ### ./tools/sql_queries.py
 
-Functions to retrive the data from the database and populate it with new instances.
+Functions to retrieve the data from the database and populate it with new instances.
 
 ### ./config/sql_queries.py
 
@@ -74,13 +77,13 @@ Folder to store all the figures generated
 
 ### Requirements:
 
-1) Python verison 3.9 (might work in older versions)
-2) MySQL (might work with other SQL database managment systems)
+1) Python version 3.9 (might work in older versions)
+2) MySQL (might work with other SQL database management systems)
 3) Python libraries specified before
 
 ### Initial Configuration:
 
-1) Obtain a API token from [The Guardian Website](https://open-platform.theguardian.com/)
+1) Obtain an API token from [The Guardian Website](https://open-platform.theguardian.com/)
 2) Create a .env file in the main folder of this repository with this structure:
 
 ```txt
@@ -91,13 +94,13 @@ SQL = <MySQL PASSWORD>
 ```console
 python main.py
 ```
-4) Start sending request to the API. [Click here for Full documentation]()
+4) Start sending requests to the API. [Click here for Full documentation]()
 
 ## Database
 
 The SQL database schema and tables are created automatically upon the first request.
 
-Alternativetly, fulldatabase.sql file can be executed in MySQL to create the database
+Alternatively, fulldatabase.sql file can be executed in MySQL to create the database
 
 ### SQL database schema
 
@@ -107,15 +110,15 @@ Alternativetly, fulldatabase.sql file can be executed in MySQL to create the dat
 
 ### Initial considerations
 
-1) The following relevant political figures where used to perform this analysis: Liz Truss, Boris Johnson, Rishi Sunak, Keir Starmer, Angela Rayner, King Charles III, Queen Elisabeth II, Volodymyr Zelenskiy, Vladimir Putin, Xi Jinping.
+1) The following relevant political figures were used to perform this analysis: Liz Truss, Boris Johnson, Rishi Sunak, Keir Starmer, Angela Rayner, King Charles III, Queen Elisabeth II, Volodymyr Zelenskiy, Vladimir Putin, and Xi Jinping.
 
-2)  The analysis was performed in a two year window (starting November 2020) using the titles of the news published in The Guardian about each one of the political figures mentioned before.
+2)  The analysis was performed in a two-year window (starting November 2020) using the titles of the news published in The Guardian about each of the political figures mentioned before.
 
 3) Only the most representative figures of the analysis have been included in this file, all the figures generated can be found in the [jupyter file](./api-use-example.ipynb) and in the *img/* folder
 
 ### Individual Analysis
 
-For each relevant political figure a WordCloud and a Sentiment Score figure was generated, all the figures can be found in the [jupyter file](./api-use-example.ipynb) and in the *img/* folder
+For each relevant political figure a WordCloud and a Sentiment Score figure were generated, all the figures can be found in the [jupyter file](./api-use-example.ipynb) and in the *img/* folder
 
 Here are some examples:
 
@@ -137,9 +140,9 @@ Here are some examples:
 
 #### Conclusions:
 
-1) It seems that there are not big differences in the sentiment score between the last 3 UK presidents. 
+1) There seem to be no significant differences in the sentiment score between the last 3 UK presidents. 
 
-2) Liz Truss was rellatively irrelevant in the newspaper before November 2021
+2) Liz Truss was relatively irrelevant in the newspaper before November 2021
 
 ### Labour vs Conservative Parties
 
@@ -149,7 +152,7 @@ Here are some examples:
 
 1) There is a slightly higher compound sentiment score in the news about Labour Party leaders.
 
-2) Lower sentiment scores would be expected for the parties in the oposition. However, the contrary was observed in that case.
+2) Lower sentiment scores would be expected for the parties in the opposition. However, the contrary was observed in that case.
 
 ### King Charles III vs Queen Elisabeth II
 
@@ -157,9 +160,9 @@ Here are some examples:
 
 #### Conclusions
 
-1) It seems that Queen Elisabeth II have a slightly better compound sentiment score over time than King Charles III.
+1) It seems that Queen Elisabeth II has a slightly better compound sentiment score over time than King Charles III.
 
-2) The compound sentiment score decreased abruptly  during the last 2 months of the analysis specially for Queen Elisabeth. This is probably realted with the news about her death and funeral as shown in the Wordcloud that are considered as negative sentiment score.
+2) The compound sentiment score decreased abruptly during the last 2 months of the analysis, especially for Queen Elisabeth. This is probably related to the news about her death and funeral as shown in the Wordcloud which is considered a negative sentiment score.
 
 ### Joe Biden vs Donald Trump
 
@@ -167,8 +170,37 @@ Here are some examples:
 
 #### Conclusions
 
-1) As expected Joe Biden have an slightly better compund sentiment score over time than Donald trumnp
+1) As expected Joe Biden has a slightly better compound sentiment score over time than Donald Trump
 
-2) Considering the political style of Donald Trump the sentiment score is suspringly close to Joe Biden with a profile more institutional
+2) Considering the political style of Donald Trump the sentiment score is surprisingly close to Joe Biden's with a profile more institutional
+
+### World Leaders
+
+![World Leaders](./img/leaders-compound.png)
+
+![World Leaders](./img/leaders-box.png)
+
+#### Conclusions:
+
+1) 
+
+ ## Final Conclusions:
+
+1) NLTK compound score seems to work better than TextBlob polarity score
+
+2) As expected for a renowned newspaper such as The Guardian, the overall neutral sentiment score is high and the subjectivity sentiment score is low.
+
+3) The small differences in sentiment scores observed when comparing the leaders from different parties are consistent with the known political alignment of the newspaper (Center-left).
+
+4) It seems that sentiment analysis might be useful to infer the political alignment of a source of news.
+
+## Next Steps:
+
+1) Adding statistical analysis
+2) Try to find a better sentiment analysis package
+3) Improve plotting functions to get more appealing and informative figures.
+4) Improve endpoints and data validation.
+5) Improve response error messages and codes
+6) Test a more biased source of news
 
 
