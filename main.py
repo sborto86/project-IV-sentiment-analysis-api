@@ -59,4 +59,4 @@ def people_put_get ():
         return jsonify(mysql.get_people())
 
 if __name__ == "__main__":
-    app.run(port=9000, debug=True)
+    app.run(port=9000)
