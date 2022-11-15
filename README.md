@@ -182,7 +182,15 @@ Here are some examples:
 
 #### Conclusions:
 
-1) 
+1) Volodymyr Zelensky was almost inexistent in the news until the end of 2021
+when the tensions with Russia start to escalate
+
+2) Volodymyr Zelensky and Vladimir Putin both have similar negative scores probably due to war news normally being classified as negative sentiment.
+
+3) Joe Biden has a relatively low compound sentiment score compared to other leaders.
+
+4) Surprisingly the leader with a better compound sentiment score over the last 2 years is Xi Jinping. It seems that the biggest difference is observed in the first half of 2021 and might be related to how China implemented effective control of the Covid-19 pandemic.
+
 
  ## Final Conclusions:
 
