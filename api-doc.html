@@ -55,7 +55,7 @@
 							<a href="#news" data-toggle="collapse" class="collapsed"><i class="fa fa-newspaper-o"></i> <span>News</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="news" class="collapse ">
 								<ul class="nav">
-									<li><a href="#news" class="">Get All News &nbsp; <span class="label label-success">GET</span></a></li>
+									<li><a href="#all-news" class="">Get All News &nbsp; <span class="label label-success">GET</span></a></li>
 									<li><a href="#news-results" class="">Get News From &nbsp; <span class="label label-success">GET</span></a></li>
 								</ul>
 							</div>
@@ -64,8 +64,8 @@
 							<a href="#sentiment" data-toggle="collapse" class="collapsed"><i class="fa fa-bar-chart"></i> <span>Sentiment Score</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="sentiment" class="collapse ">
 								<ul class="nav">
-									<li><a href="#search-all" class="">All Sentiment &nbsp; <span class="label label-success">GET</span></a></li>
-									<li><a href="#search-player" class="">Sentiment From &nbsp; <span class="label label-success">GET</span></a></li>
+									<li><a href="#sentiment-all" class="">All Sentiment &nbsp; <span class="label label-success">GET</span></a></li>
+									<li><a href="#sentiment-results" class="">Sentiment From &nbsp; <span class="label label-success">GET</span></a></li>
 								</ul>
 							</div>
 						</li>
@@ -207,6 +207,7 @@
 	}
 									</pre>
 							</div>
+							</div>
 							<div class="panel">
 								 <div class="panel-heading">
 									<h3 class="panel-title">Sample Request in Phyton</h3>
@@ -227,7 +228,6 @@
 						</div>
 					</div>
 				</div>
-
 				<hr/>
 				<div class="container-fluid" id="countries">
 					<h2 class="page-title"><strong>Get Countries</strong></h2>
@@ -266,9 +266,9 @@
 							<!-- TABLE HOVER -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title"><button data-toggle="collapse" data-target="#c-user-results">Show Sample Response</button></h3>
+									<h3 class="panel-title"><button data-toggle="collapse" data-target="#countries-sample">Show Sample Response</button></h3>
 								</div>
-								<div class="panel-body collapse" id="c-user-results">
+								<div class="panel-body collapse" id="countries-sample">
 								<pre>
 [
 	{
@@ -286,7 +286,7 @@
 		"countrycode": "AGO",
 		"countryname": "Angola"
 	},
-...
+	{...}
 ]
 								</pre>
 								</div>
@@ -295,9 +295,8 @@
 						</div>
 					</div>
 				</div>
-				<hr/>
-<div class="container-fluid" id="country-results">
-	<h2 class="page-title"><strong>Get Country</strong></h2>
+			<div class="container-fluid" id="country-results">
+				<h2 class="page-title"><strong>Get Country</strong></h2>
 					<h4 class="page-title">Gets the 2 and 3-letter ISO code and the name in English for a given country</h4>
 					<div class="row">
 						<div class="">
@@ -329,13 +328,13 @@
 							</div>
 							<!-- END TABLE HOVER -->
 						</div>
-						<div class="">
+						<div>
 							<!-- TABLE HOVER -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title"><button data-toggle="collapse" data-target="#c-user-events">Show Sample Response</button></h3>
+									<h3 class="panel-title"><button data-toggle="collapse" data-target="#country-events">Show Sample Response</button></h3>
 								</div>
-								<div class="panel-body collapse" id="c-user-events">
+								<div class="panel-body collapse" id="country-events">
 								<pre>
 [
 	{
@@ -352,6 +351,318 @@
 					</div>
 				</div>
 				<hr/>
+			<div class="container-fluid" id="all-news">
+					<h2 class="page-title"><strong>Get All News</strong></h2>
+									<h4 class="page-title">Fetches all the news stored in the database with their sentiment score calculated</h4>
+									<div class="row">
+										<div>
+											<!-- TABLE HOVER -->
+											<div class="panel">
+												<div class="panel-heading">
+													<h3 class="panel-title"><span class="label label-success">GET</span> <code>/root/sentiment</code></h3>
+												</div>
+												<div class="panel-body">
+													<table class="table table-hover">
+														<thead>
+															<tr>
+																<th>Parameter</th>
+																<th>Type</th>
+																<th>Required</th>
+																<th>Description</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>None</td>
+																<td><samp>None</samp></td>
+																<td></td>
+																<td></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<!-- END TABLE HOVER -->
+										</div>
+										<div>
+											<!-- TABLE HOVER -->
+											<div class="panel">
+												<div class="panel-heading">
+													<h3 class="panel-title"><button data-toggle="collapse" data-target="#news-events">Show Sample Response</button></h3>
+												</div>
+												<div class="panel-body collapse" id="news-events">
+												<pre>
+
+[
+	{
+		"compound": 0.57,
+		"country": "United States",
+		"date": "Sun, 13 Nov 2022 18:29:46 GMT",
+		"name": "Donald Trump",
+		"neg": 0,
+		"neu": 0.71,
+		"party": "Republican Party",
+		"polarity": 0,
+		"pos": 0.29,
+		"subjectivity": 0,
+		"title": "Democrats celebrate retaining control of Senate as Republicans take stock"
+	},
+	{
+		"compound": 0.26,
+		"country": "United States",
+		"date": "Sun, 13 Nov 2022 08:00:08 GMT",
+		"name": "Donald Trump",
+		"neg": 0,
+		"neu": 0.87,
+		"party": "Republican Party",
+		"polarity": 0,
+		"pos": 0.13,
+		"subjectivity": 0,
+		"title": "Democrats’ triumph may be miraculous but US is still split down the middle | Michael Cohen"
+	},
+
+	{...}
+				
+]
+							</pre>
+							</div>
+						</div>
+						<!-- END TABLE HOVER -->
+					</div>
+				</div>
+			</div>
+			<hr/>
+			<div class="container-fluid" id="news-results">
+				<h2 class="page-title"><strong>Get News From</strong></h2>
+								<h4 class="page-title">Fetches all the news stored in the database from a given public relevant person. The results include the calculation of the sentiment score</h4>
+								<div class="row">
+									<div>
+										<!-- TABLE HOVER -->
+										<div class="panel">
+											<div class="panel-heading">
+												<h3 class="panel-title"><span class="label label-success">GET</span> <code>/root/news/{people_name}</code></h3>
+											</div>
+											<div class="panel-body">
+												<table class="table table-hover">
+													<thead>
+														<tr>
+															<th>Parameter</th>
+															<th>Type</th>
+															<th>Required</th>
+															<th>Description</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>Name</td>
+															<td><code>str.</code></td>
+															<td><code>Required</code></td>
+															<td>Complete name of a relevant public person that is present in the database</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<!-- END TABLE HOVER -->
+									</div>
+									<div>
+										<!-- TABLE HOVER -->
+										<div class="panel">
+											<div class="panel-heading">
+												<h3 class="panel-title"><button data-toggle="collapse" data-target="#news-events">Show Sample Response</button></h3>
+											</div>
+											<div class="panel-body collapse" id="news-events">
+											<pre>
+[
+	{
+		"compound": 0.57,
+		"country": "United States",
+		"date": "Sun, 13 Nov 2022 18:29:46 GMT",
+		"name": "Donald Trump",
+		"neg": 0,
+		"neu": 0.71,
+		"party": "Republican Party",
+		"polarity": 0,
+		"pos": 0.29,
+		"subjectivity": 0,
+		"title": "Democrats celebrate retaining control of Senate as Republicans take stock"
+	},
+	{
+		"compound": 0.26,
+		"country": "United States",
+		"date": "Sun, 13 Nov 2022 08:00:08 GMT",
+		"name": "Donald Trump",
+		"neg": 0,
+		"neu": 0.87,
+		"party": "Republican Party",
+		"polarity": 0,
+		"pos": 0.13,
+		"subjectivity": 0,
+		"title": "Democrats’ triumph may be miraculous but US is still split down the middle | Michael Cohen"
+	},
+	{...}
+]
+											</pre>
+											</div>
+										</div>
+										<!-- END TABLE HOVER -->
+									</div>
+								</div>
+			</div>
+			<hr/>
+			<div class="container-fluid" id="sentiment-results">
+				<h2 class="page-title"><strong>Get Sentiment From</strong></h2>
+								<h4 class="page-title">Retrive the average and the standard deviation from the sentiment analysis of a given person news</h4>
+								<div class="row">
+									<div>
+										<!-- TABLE HOVER -->
+										<div class="panel">
+											<div class="panel-heading">
+												<h3 class="panel-title"><span class="label label-success">GET</span> <code>/root/sentiment/{people_name}</code></h3>
+											</div>
+											<div class="panel-body">
+												<table class="table table-hover">
+													<thead>
+														<tr>
+															<th>Parameter</th>
+															<th>Type</th>
+															<th>Required</th>
+															<th>Description</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>Name</td>
+															<td><code>str.</code></td>
+															<td><code>Required</code></td>
+															<td>Complete name of a relevant public person that is present in the database</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<!-- END TABLE HOVER -->
+									</div>
+									<div>
+										<!-- TABLE HOVER -->
+										<div class="panel">
+											<div class="panel-heading">
+												<h3 class="panel-title"><button data-toggle="collapse" data-target="#sentiment-events">Show Sample Response</button></h3>
+											</div>
+											<div class="panel-body collapse" id="sentiment-events">
+											<pre>
+[
+{
+"STDDEV(`neg`)": 0.13909749402569796,
+"STDDEV(compound)": 0.38781665006589466,
+"STDDEV(neu)": 0.15784591827645308,
+"STDDEV(polarity)": 0.2143812615836185,
+"STDDEV(subjectivity)": 0.29912055321363745,
+"compound": -0.094955,
+"country": "United States",
+"name": "Joe Biden",
+"neg": 0.115509,
+"neu": 0.815296,
+"party": "Democratic Party",
+"polarity": 0.018161,
+"pos": 0.070034,
+"subjectivity": 0.202916
+}
+]
+											</pre>
+											</div>
+										</div>
+										<!-- END TABLE HOVER -->
+									</div>
+								</div>
+			</div>
+			<div class="container-fluid" id="sentiment-all">
+				<h2 class="page-title"><strong>Get All Sentiment</strong></h2>
+								<h4 class="page-title">Fetches the average and the standard deviation from the sentiment analysis of all public relevant people present in the database</h4>
+								<div class="row">
+									<div>
+										<!-- TABLE HOVER -->
+										<div class="panel">
+											<div class="panel-heading">
+												<h3 class="panel-title"><span class="label label-success">GET</span> <code>/root/news</code></h3>
+											</div>
+											<div class="panel-body">
+												<table class="table table-hover">
+													<thead>
+														<tr>
+															<th>Parameter</th>
+															<th>Type</th>
+															<th>Required</th>
+															<th>Description</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>None</td>
+															<td><samp>None</samp></td>
+															<td></td>
+															<td></td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<!-- END TABLE HOVER -->
+									</div>
+									<div>
+										<!-- TABLE HOVER -->
+										<div class="panel">
+											<div class="panel-heading">
+												<h3 class="panel-title"><button data-toggle="collapse" data-target="#sentiment-events2">Show Sample Response</button></h3>
+											</div>
+											<div class="panel-body collapse" id="sentiment-events2">
+											<pre>
+			
+[
+	{
+		"STDDEV(`neg`)": 0.14926577186162454,
+		"STDDEV(compound)": 0.39412573517051713,
+		"STDDEV(neu)": 0.165919025561614,
+		"STDDEV(polarity)": 0.2323965776619726,
+		"STDDEV(subjectivity)": 0.31015502867258354,
+		"compound": -0.122972,
+		"country": "United States",
+		"name": "Donald Trump",
+		"neg": 0.131219,
+		"neu": 0.797405,
+		"party": "Republican Party",
+		"polarity": 0.016396,
+		"pos": 0.072192,
+		"subjectivity": 0.233698
+	},
+	{
+		"STDDEV(`neg`)": 0.13909749402569796,
+		"STDDEV(compound)": 0.38781665006589466,
+		"STDDEV(neu)": 0.15784591827645308,
+		"STDDEV(polarity)": 0.2143812615836185,
+		"STDDEV(subjectivity)": 0.29912055321363745,
+		"compound": -0.094955,
+		"country": "United States",
+		"name": "Joe Biden",
+		"neg": 0.115509,
+		"neu": 0.815296,
+		"party": "Democratic Party",
+		"polarity": 0.018161,
+		"pos": 0.070034,
+		"subjectivity": 0.202916
+	},
+
+{...}
+
+]
+						</pre>
+						</div>
+					</div>
+					<!-- END TABLE HOVER -->
+				</div>
+			</div>
+			</div>
+			<hr/>
 			<!-- END MAIN CONTENT -->
 		</div>
 		<!-- END MAIN -->
