@@ -94,7 +94,7 @@ SQL = <MySQL PASSWORD>
 ```console
 python main.py
 ```
-4) Start sending requests to the API. [Click here for Full documentation]()
+4) Start sending requests to the API. [Click here for Full documentation](./api-doc.html)
 
 ## Database
 

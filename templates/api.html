@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>Sentimeny Score Analysis API Documentation</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<!--CSS -->
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/static/css/main.css">
+	<!-- GOOGLE FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+	<!-- ICONS -->
+	<link rel="apple-touch-icon" sizes="76x76" href="/static/img/apple-icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/static/img/favicon.png">
+</head>
+
+<body>
+	<!-- WRAPPER -->
+	<div id="wrapper">
+		<!-- NAVBAR -->
+		<nav class="navbar navbar-default navbar-fixed-top" style="background:none; width:0px;">
+			<div class="container-fluid">
+				<div class="navbar-btn">
+					<button type="button" class="btn-toggle-fullwidth"><i class="fa fa-bars"></i></button>
+				</div>
+			</div>
+		</nav>
+		<!-- END NAVBAR -->
+		<!-- LEFT SIDEBAR -->
+		<div id="sidebar-nav" class="sidebar">
+			<div class="sidebar-scroll">
+				<nav>
+					<ul class="nav">
+						<li>
+							<a href="#people" data-toggle="collapse" class="collapsed"><i class="fa fa-user-o"></i> <span>People</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="people" class="collapse ">
+								<ul class="nav">
+									<li><a href="#people-info">Get People &nbsp; <span class="label label-success">GET</span></a></li>
+									<li><a href="#people-add">Add People &nbsp; <span class="label label-warning">PUT</span></a></li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a href="#country" data-toggle="collapse" class="collapsed"><i class="fa fa-globe"></i> <span>Country</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="country" class="collapse ">
+								<ul class="nav">
+									<li><a href="#countries" class="">Get Countries &nbsp; <span class="label label-success">GET</span></a></li>
+									<li><a href="#country-results" class="">Get Country &nbsp; <span class="label label-success">GET</span></a></li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a href="#news" data-toggle="collapse" class="collapsed"><i class="fa fa-newspaper-o"></i> <span>News</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="news" class="collapse ">
+								<ul class="nav">
+									<li><a href="#news" class="">Get All News &nbsp; <span class="label label-success">GET</span></a></li>
+									<li><a href="#news-results" class="">Get News From &nbsp; <span class="label label-success">GET</span></a></li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a href="#sentiment" data-toggle="collapse" class="collapsed"><i class="fa fa-bar-chart"></i> <span>Sentiment Score</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="sentiment" class="collapse ">
+								<ul class="nav">
+									<li><a href="#search-all" class="">All Sentiment &nbsp; <span class="label label-success">GET</span></a></li>
+									<li><a href="#search-player" class="">Sentiment From &nbsp; <span class="label label-success">GET</span></a></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<!-- END LEFT SIDEBAR -->
+		<!-- MAIN -->
+		<div class="main">
+			<!-- MAIN CONTENT -->
+			<div class="main-content">
+				<div class="container-fluid" id="people-info">
+					<h2 class="page-title"><strong>Get People<strong/></h2>
+					<h4 class="page-title">Basic information of the relevant public people included in the database</h4>
+					<div class="row">
+						<div class="">
+							<!-- TABLE HOVER -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title"><span class="label label-success">GET</span> <code>/root/people/</code></h3>
+								</div>
+								<div class="panel-body">
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Parameter</th>
+												<th>Type</th>
+												<th>Required</th>
+												<th>Description</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>None</td>
+												<td><samp>None</samp></td>
+												<td></td>
+												<td></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!-- END TABLE HOVER -->
+						</div>
+						<div class="">
+							<!-- TABLE HOVER -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title">
+									<button data-toggle="collapse" data-target="#c-people">Show Sample Response</button></h3>
+								</div>
+								<div class="panel-body collapse" id="c-people">
+								<pre>[
+	{
+	"countrycode": "USA",
+	"fname": "Donald Trump",
+	"party_name": "Republican Party"
+	},
+	{
+	"countrycode": "USA",
+	"fname": "Joe Biden",
+	"party_name": "Democratic Party"
+	},
+	{
+	"countrycode": "GBR",
+	"fname": "Boris Johnson",
+	"party_name": "Conservative Party"
+	},
+	{
+	"countrycode": "GBR",
+	"fname": "Liz Truss",
+	"party_name": "Conservative Party"
+	}
+]</pre>
+								</div>
+							</div>
+							<!-- END TABLE HOVER -->
+						</div>
+					</div>
+				</div>
+				<div class="container-fluid" id="people-add">
+					<h2 class="page-title"><strong>Add People<strong/></h2>
+					<h4 class="page-title">Adds a public relevant person to the database, downloads the last two years of news published in The Guardian about him/her and calculate the sentiment score using NLPK and Blobtext</h4>
+					<div class="row">
+						<div>
+							<!-- TABLE HOVER -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title"><span class="label label-warning">PUT</span> <code>/root/people/</code></h3>
+								</div>
+								<div class="panel-body">
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Parameter</th>
+												<th>Type</th>
+												<th>Required</th>
+												<th>Description</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>name</td>
+												<td><code>str.</code></td>
+												<td><code>Required</code></td>
+												<td>Complete name of the public relevant person in English</td>
+											</tr>
+											<tr>
+												<td>country</td>
+												<td><code>str.</code></td>
+												<td><code>Required</code></td>
+												<td>Nationality of the public relevant people expressed in 3 letter ISO code</td>
+											</tr>
+											<tr>
+												<td>party</td>
+												<td><samp>str.</samp></td>
+												<td><samp>Optional</samp></td>
+												<td>Political party to which the person is affiliated</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!-- END TABLE HOVER -->
+						</div>
+						<div>
+							<!-- TABLE HOVER -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title">Sample Request</h3>
+								</div>
+								<div class="panel-body" id="c-add-people">
+									<pre>
+	{
+		"name": "Liz Truss",
+		"country": "GBR",
+		"party": "Conservative Party"
+	}
+									</pre>
+							</div>
+							<div class="panel">
+								 <div class="panel-heading">
+									<h3 class="panel-title">Sample Request in Phyton</h3>
+								</div>
+								<div class="panel-body" id="c-add-people">
+									<pre><code>
+	import requests
+	dic = {
+		'name': 'Liz Truss',
+		'country': 'GBR',
+		'party': 'Conservative Party'
+		}
+	response = requests.put(url, params=dic)</code>
+								</pre>
+								</div>
+							</div>
+							<!-- END TABLE HOVER -->
+						</div>
+					</div>
+				</div>
+
+				<hr/>
+				<div class="container-fluid" id="countries">
+					<h2 class="page-title"><strong>Get Countries</strong></h2>
+					<h4 class="page-title">Fetches the 2 and 3-letter ISO code and the name in English for all the countries in the world</h4>
+					<div class="row">
+						<div>
+							<!-- TABLE HOVER -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title"><span class="label label-success">GET</span> <code>/root/country</code></h3>
+								</div>
+								<div class="panel-body">
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Parameter</th>
+												<th>Type</th>
+												<th>Required</th>
+												<th>Description</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>None</td>
+												<td><samp>None</samp></td>
+												<td></td>
+												<td></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!-- END TABLE HOVER -->
+						</div>
+						<div>
+							<!-- TABLE HOVER -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title"><button data-toggle="collapse" data-target="#c-user-results">Show Sample Response</button></h3>
+								</div>
+								<div class="panel-body collapse" id="c-user-results">
+								<pre>
+[
+	{
+		"code": "AW",
+		"countrycode": "ABW",
+		"countryname": "Aruba"
+	},
+	{
+		"code": "AF",
+		"countrycode": "AFG",
+		"countryname": "Afghanistan"
+	},
+	{
+		"code": "AO",
+		"countrycode": "AGO",
+		"countryname": "Angola"
+	},
+...
+]
+								</pre>
+								</div>
+							</div>
+							<!-- END TABLE HOVER -->
+						</div>
+					</div>
+				</div>
+				<hr/>
+<div class="container-fluid" id="country-results">
+	<h2 class="page-title"><strong>Get Country</strong></h2>
+					<h4 class="page-title">Gets the 2 and 3-letter ISO code and the name in English for a given country</h4>
+					<div class="row">
+						<div class="">
+							<!-- TABLE HOVER -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title"><span class="label label-success">GET</span> <code>/root/country/{country_name}</code></h3>
+								</div>
+								<div class="panel-body">
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Parameter</th>
+												<th>Type</th>
+												<th>Required</th>
+												<th>Description</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Country Name</td>
+												<td><code>str.</code></td>
+												<td><code>Required</code></td>
+												<td>Name of a country in English</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!-- END TABLE HOVER -->
+						</div>
+						<div class="">
+							<!-- TABLE HOVER -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title"><button data-toggle="collapse" data-target="#c-user-events">Show Sample Response</button></h3>
+								</div>
+								<div class="panel-body collapse" id="c-user-events">
+								<pre>
+[
+	{
+	"code": "GB",
+	"countrycode": "GBR",
+	"countryname": "United Kingdom"
+	}
+]
+								</pre>
+								</div>
+							</div>
+							<!-- END TABLE HOVER -->
+						</div>
+					</div>
+				</div>
+				<hr/>
+			<!-- END MAIN CONTENT -->
+		</div>
+		<!-- END MAIN -->
+		<div class="clearfix"></div>
+		<footer>
+			<div class="container-fluid">
+				<p class="copyright">Adapted from <a href="https://github.com/perogeremmer/kiddyxyz.github.io" target="_blank">Muhamad Hudya Ramadhana</a> API Documentation Template HTML.</p>
+			</div>
+		</footer>
+	</div>
+	<!-- END WRAPPER -->
+	<!-- Javascript -->
+	<script src="/static/scripts/jquery.min.js"></script>
+	<script src="/static/scripts/bootstrap.min.js"></script>
+	<script src="/static/scripts/jquery.slimscroll.min.js"></script>
+	<script src="/static/scripts/klorofil-common.js"></script>
+	<script>
+		$(document).ready(function() {
+		  $('pre code').each(function(i, block) {
+			hljs.highlightBlock(block);
+		  });
+		});
+	</script>
+</body>
+</html>

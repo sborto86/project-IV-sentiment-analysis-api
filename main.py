@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, make_response
+from flask import Flask, request, jsonify, make_response, render_template
 import markdown.extensions.fenced_code
 import tools.sql_queries as mysql
 
@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route("/")
 def readme ():
     readme_file = open("README.md", "r")
-    return markdown.markdown(readme_file.read(), extensions = ["fenced_code"])
+    return render_template('api.html')
 
 # GET ENDPOINTS: SQL 
 # Get All News Titles
