@@ -46,6 +46,10 @@ This project has two main objectives
 
 Python file that establishes the Flask local development server and the API endpoints
 
+### [api-doc.html](https://rawcdn.githack.com/sborto86/project-IV-sentiment-analysis-api/3fee6b4dfc2df19577d4d91acb4fe266feb3bcb5/api-doc.html)
+
+HTML file that contains the API documentation that is accessible without activating the Flask local server (click the link above to check the API documentation)
+
 ### *api-use-example.ipynb*
 
 Jupyter notebook with examples of how to use this API and generate figures.
@@ -72,6 +76,14 @@ Establishes the engine to connect with the SQL database
 ### ./img/
 
 Folder to store all the figures generated
+
+### ./templates/api.html
+
+Flask HTML template that contains the API documentation.
+
+### ./static/
+
+The folder that contains the CSS, Fonts, and JS files necessary for the API documentation
 
 ## How to use this repository
 
