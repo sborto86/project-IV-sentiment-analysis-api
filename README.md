@@ -94,7 +94,7 @@ SQL = <MySQL PASSWORD>
 ```console
 python main.py
 ```
-4) Start sending requests to the API. [Click here for Full documentation](./api-doc.html)
+4) Start sending requests to the API. [Click here for Full documentation](https://rawcdn.githack.com/sborto86/project-IV-sentiment-analysis-api/3fee6b4dfc2df19577d4d91acb4fe266feb3bcb5/api-doc.html)
 
 ## Database
 
