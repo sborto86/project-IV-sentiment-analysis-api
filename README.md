@@ -190,7 +190,7 @@ Here are some examples:
 
 ![World Leaders](./img/leaders-compound.png)
 
-![World Leaders](./img/leaders-box.png)
+![World Leaders](./img/world-leaders.png)
 
 #### Conclusions:
 
